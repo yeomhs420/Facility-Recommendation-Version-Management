@@ -1,0 +1,26 @@
+# 도커 컴포즈 파일 작성
+version: "3.8"
+services:
+  pharmacy-recommendation-redis:
+    container_name: pharmacy-recommendation-redis
+    build:
+      dockerfile: Dockerfile
+      context: ./redis
+    image: yeomhs420/pharmacy-recommendation-redis
+    ports:
+      - "6379:6379"
+  pharmacy-recommendation-database:
+    container_name: pharmacy-recommendation-database
+    build:  # Dockerfile이 있는 위치
+      dockerfile: Dockerfile
+      context: ./database
+    image: yeomhs420/pharmacy-recommendation-database # 컨테이너 생성 시, 사용할 도커 이미지 지정
+    environment:
+      - MARIADB_DATABASE=pharmacy-recommendation
+      - MARIADB_ROOT_PASSWORD=${SPRING_DATASOURCE_PASSWORD} # env 파일 참조
+    volumes:
+      - ./database/config:/etc/mysql/conf.d # 호스트 디렉토리 : 컨테이너 디렉토리 참조
+      - ./database/init:/docker-entrypoint-initdb.d # sql 파일
+      - ./mariadb/data:/var/lib/mysql
+    ports:
+      - "3306:3306" # 접근 포트 설정(컨테이너 외부: 컨테이너 내부)
