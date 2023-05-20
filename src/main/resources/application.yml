@@ -6,8 +6,11 @@ spring:
         - common
       prod: # operating server profile
         - common
+  mustache:
+    expose-session-attributes: true
 
 ---
+
 
 spring:
   config:
@@ -30,7 +33,7 @@ spring:
     #driver-class-name: org.mariadb.jdbc.Driver
     driver-class-name: com.mysql.cj.jdbc.Driver
     #url: jdbc:mariadb://localhost:3306/pharmacy-recommendation
-    url: jdbc:mysql://localhost:3306/firstproject_db
+    url: jdbc:mysql://localhost:3306/pharmacy
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
   redis:

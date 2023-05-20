@@ -1,0 +1,78 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&family=Quicksand:wght@700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/login/css/login.css">
+</head>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row full-height justify-content-center">
+            <div class="col-12 text-center align-self-center py-5">
+                <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                    <label for="reg-log"></label>
+                    <div class="card-3d-wrap mx-auto">
+                        <div class="card-3d-wrapper">
+                            <div class="card-front">
+                                <div class="center-wrap">
+                                    <div class="section text-center">
+                                        <h4 class="mb-4 pb-3">Log In</h4>
+                                        <form name="loginForm">
+                                            <div class="form-group">
+                                                <input type="text" name="userId" class="form-style" placeholder="Your Email" id="logemail" onkeyup="checkEnter(event)" autocomplete="off">
+                                                <i class="input-icon uil uil-at"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="password" name="password" class="form-style" placeholder="Your Password" onkeyup="checkEnter(event)" id="logpass" autocomplete="off">
+                                                <i class="input-icon uil uil-lock-alt"></i>
+                                            </div>
+                                            <input class="btn mt-4" type="button" value="submit" onclick="sub()">
+
+                                        </form>
+                                        <p class="mb-0 mt-4 text-center"><a href="/join" class="link">Sign Up</a></p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function checkEnter(event) {
+            if (event.keyCode === 13) {
+                sub();
+            }
+        }
+    function sub(){
+        let formData = $("form[name=loginForm]").serialize();
+
+        console.log(formData);
+
+        $.ajax({
+                url : '/login/action',
+                type : 'POST',
+                data : formData,
+                dataType: 'json',
+                success : function(result) {
+                    console.log(result);
+                    location.href = "http://localhost:8080/";
+                },
+                error:function(error){
+                    if(error.responseJSON.msg){
+                        console.log(error);
+                        alert(error.responseJSON.msg);
+                    }
+
+                }
+            });
+    }
+
+</script>
