@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -23,12 +24,15 @@ public class FormController {
         return "main";
     }
 
+    @GetMapping("/index")
+    public String index() {return "index";}
+
     @GetMapping("/search")
     public ModelAndView postDirection(@ModelAttribute InputDto inputDto){
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("output");
-        modelAndView.addObject("outputFormList", pharmacyRecommendationService.recommendPharmacyList(inputDto.getAddress()));
+        modelAndView.addObject("outputFormList", pharmacyRecommendationService.recommendPharmacyList(inputDto.getAddress(), inputDto.getCategory()));
 
         return modelAndView;
     }

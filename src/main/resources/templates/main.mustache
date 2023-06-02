@@ -29,8 +29,22 @@
             <div>
                 <h2>Facilities Recommendation</h2>
             </div>
-            <div class="body">
+            <div>
                 <form action="/search" method = "get">
+                    <div style="margin-bottom:20px;">
+                        <label for="category">시설을 선택하세요:</label>
+                        <select class="form-control" id="category" name="category">
+                            <option value="CS2">편의점</option>
+                            <option value="PM9">약국</option>
+                            <option value="HP8">병원</option>
+                            <option value="BK9">은행</option>
+                            <option value="CE7">카페</option>
+                            <option value="OL7">주유소</option>
+                            <option value="MT1">마트</option>
+                            <option value="SW8">지하철역</option>
+                        </select>
+                    </div>
+
                     <div>
                         <label for="address">주소를 입력하시면 주소 기준으로 가까운 위치 시설 최대 3곳 추천드립니다.</label>
                         <input type="text" class="form-control" id="address_kakao" name="address"

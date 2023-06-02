@@ -34,7 +34,7 @@ public class PharmacyRecommendationService {
 
     private final Base62Service base62Service;
 
-    public List<OutputDto> recommendPharmacyList(String address) {
+    public List<OutputDto> recommendPharmacyList(String address, String category) {
 
         KakaoApiResponseDto kakaoApiResponseDto = kakaoAddressSearchService.requestAddressSearch(address);
 
@@ -46,7 +46,7 @@ public class PharmacyRecommendationService {
         DocumentDto documentDto = kakaoApiResponseDto.getDocumentList().get(0); // 사용자 위치
 
         //List<Direction> directionList = directionService.buildDirectionList(documentDto);   // 공공기관에서 받은 데이터를 이용한 장소 찾기
-        List<Direction> directionList = directionService.buildDirectionListByCategoryApi(documentDto);  // 장소 카테고리 api 를 이용한 장소 찾기
+        List<Direction> directionList = directionService.buildDirectionListByCategoryApi(documentDto, category);  // 장소 카테고리 api 를 이용한 장소 찾기
 
         return directionService.saveAll(directionList)
                 .stream()

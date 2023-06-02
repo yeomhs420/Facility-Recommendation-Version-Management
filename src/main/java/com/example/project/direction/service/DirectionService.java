@@ -78,11 +78,11 @@ public class DirectionService {
 
 
     // pharmacy search by category kakao api   (위의 메소드를 사용하면  공공데이터를 가져와 정적으로 사용하게 될 뿐더러 전국의 약국데이터가 너무 많기 때문에 비효율적)
-    public List<Direction> buildDirectionListByCategoryApi(DocumentDto inputDocumentDto){
+    public List<Direction> buildDirectionListByCategoryApi(DocumentDto inputDocumentDto, String category){
 
         if(Objects.isNull(inputDocumentDto)) return Collections.emptyList();
 
-        return kakaoCategorySearchService.requestPharmacyCategorySearch(inputDocumentDto.getLatitude(), inputDocumentDto.getLongitude(), RADIUS_KM)
+        return kakaoCategorySearchService.requestPharmacyCategorySearch(inputDocumentDto.getLatitude(), inputDocumentDto.getLongitude(), RADIUS_KM, category)
                 .getDocumentList()
                 .stream().map(resultDocumentDto ->
                         Direction.builder()

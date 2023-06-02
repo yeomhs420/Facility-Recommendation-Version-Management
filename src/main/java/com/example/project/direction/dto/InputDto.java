@@ -7,4 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class InputDto {
     private String address;
+    private String category;
 }
