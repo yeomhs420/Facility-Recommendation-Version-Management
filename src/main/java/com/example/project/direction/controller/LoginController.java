@@ -45,6 +45,8 @@ public class LoginController {
 
         session.setMaxInactiveInterval(7200);
 
+        System.out.println("1");
+
         Map<String, String> userDtoMap = new HashMap<>();
         userDtoMap.put("userId", userDto.getUserId());
         userDtoMap.put("password", userDto.getPassword());
