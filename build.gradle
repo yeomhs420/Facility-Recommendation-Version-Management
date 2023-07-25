@@ -48,11 +48,11 @@ dependencies {
 	testImplementation('com.squareup.okhttp3:mockwebserver:4.10.0')
 
 	//HandelBars
-//	implementation 'pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.4'
+	implementation 'pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.4'
 	implementation 'org.springframework.boot:spring-boot-starter-mustache'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	
+
 	implementation 'io.seruco.encoding:base62:0.1.3'
 
 	implementation 'org.springframework.boot:spring-boot-starter-validation'

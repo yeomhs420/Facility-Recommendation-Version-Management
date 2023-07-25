@@ -27,11 +27,11 @@ public class KakaoAddressSearchService {
     @Value("${kakao.rest.api.key}")
     private String kakaoRestApiKey;
 
-    @Retryable(
-            value = {RuntimeException.class},
-            maxAttempts = 2,
-            backoff = @Backoff(delay = 2000)
-    )   // 오류가 발생한 경우 재처리 시도 횟수 및 지연 시간 정의
+//    @Retryable(
+//            value = {RuntimeException.class},
+//            maxAttempts = 2,
+//            backoff = @Backoff(delay = 2000)
+//    )   // 오류가 발생한 경우 재처리 시도 횟수 및 지연 시간 정의
     public KakaoApiResponseDto requestAddressSearch(String address){
 
         if(ObjectUtils.isEmpty(address)) return null;

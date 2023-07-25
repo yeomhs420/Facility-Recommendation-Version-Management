@@ -43,7 +43,7 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
-    defer-datasource-initialization: true
+    defer-datasource-initialization: true #데이터베이스 연결 초기화를 지연 (첫 번째 쿼리가 실행될 때까지)
 
 pharmacy:
   recommendation:

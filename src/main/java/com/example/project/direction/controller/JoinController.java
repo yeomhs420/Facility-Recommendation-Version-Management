@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,21 +33,14 @@ public class JoinController {
     @Autowired
     private LoginService loginService;
 
-    @RequestMapping({"/", ""})
-    public String Join(HttpServletRequest request, Model model){
-        Map<String, ?> flashMap  = RequestContextUtils.getInputFlashMap(request);
-        if(flashMap != null){
-            model.addAttribute("id_error", flashMap.get("id_error"));
-            model.addAttribute("password_error", flashMap.get("password_error"));
-        }
-
+    @GetMapping({"/", ""})
+    public String Join(){
         return "/join";
     }
 
     @PostMapping("/action")
     @ResponseBody
-    public ResponseEntity<Map<String, String>> joinAction(@Valid UserDto userDto, BindingResult bindingResult, Model model){
-        // jquery 의 serialize 를 이용해 파리미터 형식 (test1=123&test2=456&test3=789) -> ModelAttribute 사용
+    public ResponseEntity<Map<String, String>> joinAction(@Valid UserDto userDto, BindingResult bindingResult){// jquery 의 serialize 를 이용
         Map<String, String> error_text = new HashMap<>();
         if(bindingResult.hasErrors()){
             if(!bindingResult.getFieldErrors("userId").isEmpty())

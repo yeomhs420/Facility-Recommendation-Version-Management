@@ -17,7 +17,6 @@ public class PharmacySearchService {
     private final PharmacyRepositoryService pharmacyRepositoryService;
 
     public List<PharmacyDto> searchPharmacyDtoList(){
-
         return pharmacyRepositoryService.findAll().stream().map(entity -> convertToPharmacyDto(entity)).collect(Collectors.toList());
     }
 

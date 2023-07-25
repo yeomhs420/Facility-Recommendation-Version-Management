@@ -6,6 +6,7 @@ import com.example.project.direction.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -18,6 +19,7 @@ public class LoginService {
     @Autowired
     UserRepository userRepository;
 
+    @Transactional
     public void encryptPassword(UserEntity user) {
 
         String enPw = passwordEncoder.encode(user.getPassword());

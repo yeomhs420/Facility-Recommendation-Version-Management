@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,7 +27,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @RequestMapping({"/", ""})
+    @GetMapping({"/", ""})
     public String Login(){ return "login"; };
 
 
@@ -44,8 +45,6 @@ public class LoginController {
         session.setAttribute("user", user);
 
         session.setMaxInactiveInterval(7200);
-
-        System.out.println("1");
 
         Map<String, String> userDtoMap = new HashMap<>();
         userDtoMap.put("userId", userDto.getUserId());
