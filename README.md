@@ -5,6 +5,7 @@
 
 
 - 프로젝트 이름 : 편의시설 길 찾기 웹 서비스
+- 개발 인원 : 1인
 - 프로젝트 설명 : 사용자 위치에 가깝고 알맞은 편의시설을 카카오맵을 통해 제공
 - 기술 스택 : SpringBoot, JDK, JPA, OpenAPI, MYSQL, SPOCK, mustache
 - 사용 에디터 : IntelliJ
